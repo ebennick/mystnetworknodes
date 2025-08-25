@@ -41,7 +41,7 @@ const choosePath = () => {
 const loadNodes = async () => {
     try {
         const chosenPath = choosePath();
-        const res = await fetch(`${proxyUrl}${chosenPath}`, {
+        const res = await fetch(chosenPath, {
             headers: {
                 'Cache-Control': 'max-age=0, no-cache, no-store, must-revalidate',
                 'accept': 'application/json'
