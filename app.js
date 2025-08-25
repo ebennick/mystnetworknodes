@@ -48,6 +48,10 @@ const loadNodes = async () => {
             }
         });
 
+        if (!res.ok) {
+            throw new Error(`Failed to fetch nodes data: ${res.status} ${res.statusText}`);
+        }
+
         nodeIds = await res.json();
 
         await fetchCountryNames(nodeIds);
@@ -57,9 +61,17 @@ const loadNodes = async () => {
         displayNodes(nodeIds);
     } catch (err) {
         console.error(err);
+        showFetchError();
     }
 };
 
+const showFetchError = () => {
+    const fetchError = `<div align="center">
+                <h2 id="fetchingErrorMessage">Failed to load nodes data. Please try again later or visit <a href="https://discovery-ui.mysterium.network">Discovery UI</a></h2>
+                <h2 id="fetchingErrorCode">(API_FETCH_ERROR: Unable to retrieve data from the Mysterium Network)</h2>
+            </div>`;
+    nodesList.innerHTML = fetchError;
+};
 const fetchCountryNames = async (nodes) => {
     const countryPromises = nodes.map(async (node) => {
         const countryCode = node.location.country;
