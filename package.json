@@ -1,0 +1,17 @@
+{
+  "name": "mysterium-nodes-finder",
+  "version": "1.0.0",
+  "description": "Mysterium Network Nodes Discovery/Finder - Simple Node finding Site",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": ["mysterium", "network", "nodes", "discovery", "vpn"],
+  "author": "abhrajo",
+  "license": "MIT"
+}
