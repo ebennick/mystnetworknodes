@@ -30,9 +30,8 @@ let load = `<div align="center">
             </div>`;
 nodesList.innerHTML = load;
 
-const proxyUrl = 'https://corsproxy.io/?';
-const path1 = 'https://discovery.mysterium.network/api/v3/proposals';
-const path2 = 'https://discovery-ui.mysterium.network/api/v3/proposals';
+const path1 = '/discovery-api/api/v3/proposals';
+const path2 = '/discovery-ui-api/api/v3/proposals';
 
 const choosePath = () => {
     return Math.random() > 0.5 ? path1 : path2;
