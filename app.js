@@ -51,7 +51,8 @@ const loadNodes = async () => {
             throw new Error(`Failed to fetch nodes data: ${res.status} ${res.statusText}`);
         }
 
-        nodeIds = await res.json();
+        const data = await res.json();
+        nodeIds = JSON.parse(data.contents);
 
         await fetchCountryNames(nodeIds);
 

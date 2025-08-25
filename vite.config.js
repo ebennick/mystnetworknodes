@@ -11,22 +11,4 @@ export default defineConfig({
       }
     }
   },
-  server: {
-    port: 3000,
-    open: true,
-    proxy: {
-      '/discovery-api': {
-        target: 'https://discovery.mysterium.network',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/discovery-api/, '')
-      },
-      '/discovery-ui-api': {
-        target: 'https://discovery-ui.mysterium.network',
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/discovery-ui-api/, '')
-      }
-    }
-  }
 });
