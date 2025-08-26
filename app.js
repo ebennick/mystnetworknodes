@@ -30,17 +30,12 @@ let load = `<div align="center">
             </div>`;
 nodesList.innerHTML = load;
 
-const path1 = '/discovery-api/api/v3/proposals';
-const path2 = '/discovery-ui-api/api/v3/proposals';
-
-const choosePath = () => {
-    return Math.random() > 0.5 ? path1 : path2;
-};
+const apiEndpoint = 'https://discovery-ui.mysterium.network/api/v3/proposals';
 
 const loadNodes = async () => {
     try {
-        const chosenPath = choosePath();
-        const res = await fetch(chosenPath, {
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiEndpoint)}`;
+        const res = await fetch(proxyUrl, {
             headers: {
                 'Cache-Control': 'max-age=0, no-cache, no-store, must-revalidate',
                 'accept': 'application/json'
@@ -79,9 +74,12 @@ const fetchCountryNames = async (nodes) => {
 
         if (!countryName) {
             try {
-                const res = await fetch(`https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/countries-codes/records?select=label_en&limit=1&refine=iso2_code:${countryCode}`);
+                const countryApiUrl = `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/countries-codes/records?select=label_en&limit=1&refine=iso2_code:${countryCode}`;
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(countryApiUrl)}`;
+                const res = await fetch(proxyUrl);
                 const data = await res.json();
-                countryName = data.results.length > 0 ? data.results[0].label_en : countryCode;
+                const countryData = JSON.parse(data.contents);
+                countryName = countryData.results.length > 0 ? countryData.results[0].label_en : countryCode;
                 localStorage.setItem(countryCode, countryName);
             } catch (err) {
                 console.error(`Failed to fetch country name for ${countryCode}`, err);
