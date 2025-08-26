@@ -30,7 +30,7 @@ let load = `<div align="center">
             </div>`;
 nodesList.innerHTML = load;
 
-const apiEndpoint = 'https://discovery.mysterium.network/api/v3/proposals';
+const apiEndpoint = '/api/mysterium';
 
 const loadNodes = async () => {
     try {
