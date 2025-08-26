@@ -73,7 +73,7 @@ const fetchCountryNames = async (nodes) => {
 
         if (!countryName) {
             try {
-                const countryApiUrl = `https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/countries-codes/records?select=label_en&limit=1&refine=iso2_code:${countryCode}`;
+                const countryApiUrl = `/api/countries-data/api/explore/v2.1/catalog/datasets/countries-codes/records?select=label_en&limit=1&refine=iso2_code:${countryCode}`;
                 const res = await fetch(countryApiUrl);
                 const data = await res.json();
                 const countryData = data;
