@@ -9,14 +9,12 @@ export default defineConfig({
         target: 'https://discovery-ui.mysterium.network',
         changeOrigin: true,
         secure: false,
-        secure: true,
         rewrite: (path) => path.replace(/^\/discovery-api/, '')
       },
       '/discovery-ui-api': {
         target: 'https://discovery-ui.mysterium.network',
         changeOrigin: true,
         secure: false,
-        secure: true,
         rewrite: (path) => path.replace(/^\/discovery-ui-api/, '')
       }
     }
